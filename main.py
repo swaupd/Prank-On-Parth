@@ -1,3 +1,6 @@
+with open("prank_log.txt", "a") as f:
+    f.write("Prank ran successfully!\n")
+
 import pygame
 from PIL import Image
 import sys
