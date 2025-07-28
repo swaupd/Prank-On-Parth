@@ -24,7 +24,7 @@ except Exception as e:
 
 # Load the image using PIL
 try:
-    os.startfile(IMAGE_PATH)
+    img = Image.open(IMAGE_PATH)
 except Exception as e:
     print(f"Failed to open image: {e}")
     sys.exit(1)
