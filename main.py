@@ -1,19 +1,14 @@
+with open("prank_log.txt", "a") as f:
+    f.write("Prank ran successfully!\n")
+
 import pygame
 from PIL import Image
-import os
 import sys
-
-# ----- Log Start -----
-try:
-    with open("prank_log.txt", "a") as f:
-        f.write("Prank ran successfully!\n")
-except Exception as log_err:
-    print(f"Log write failed: {log_err}")
+import os
 
 # ----- Configuration -----
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-IMAGE_PATH = os.path.join(SCRIPT_DIR, "image.jpg")   # Replace with actual filename if different
-AUDIO_PATH = os.path.join(SCRIPT_DIR, "sound.mp3")   # Replace with actual filename if different
+IMAGE_PATH = "image.jpg"  # Replace with your image path
+AUDIO_PATH = "sound.mp3"  # Replace with your audio path
 
 # ----- Initialize Pygame -----
 pygame.init()
@@ -27,34 +22,36 @@ except Exception as e:
     print(f"Failed to play audio: {e}")
     sys.exit(1)
 
-# Load image using PIL
+# Load the image using PIL
 try:
     img = Image.open(IMAGE_PATH)
 except Exception as e:
     print(f"Failed to open image: {e}")
     sys.exit(1)
 
-# Get screen size
-info = pygame.display.Info()
-screen_width, screen_height = info.current_w, info.current_h
+# Get screen dimensions
+screen_info = pygame.display.Info()
+screen_width, screen_height = screen_info.current_w, screen_info.current_h
 
-# Resize image to screen size
+# Resize the image to fit the screen
 img = img.resize((screen_width, screen_height), Image.Resampling.LANCZOS)
+
+
+# Convert the PIL image to a format Pygame understands
 mode = img.mode
 size = img.size
 data = img.tobytes()
-
-# Convert PIL image to Pygame surface
 image_surface = pygame.image.fromstring(data, size, mode)
 
-# Display full screen
+# Set up fullscreen display
 screen = pygame.display.set_mode((screen_width, screen_height), pygame.FULLSCREEN)
-pygame.display.set_caption("You Got Pranked!")
+pygame.display.set_caption("Fullscreen Image Viewer")
 
+# Display the image
 screen.blit(image_surface, (0, 0))
 pygame.display.flip()
 
-# Wait for music to end or user input
+# Wait until the music finishes or the user closes the window
 running = True
 while running:
     for event in pygame.event.get():
@@ -64,4 +61,5 @@ while running:
     if not pygame.mixer.music.get_busy():
         running = False
 
+# Clean up
 pygame.quit()
