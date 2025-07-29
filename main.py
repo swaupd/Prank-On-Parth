@@ -1,4 +1,66 @@
-from screeninfo import get_monitors
+import pyttsx3
 
-for m in get_monitors():
-    print(f"Display: {m.name}, x={m.x}, y={m.y}, width={m.width}, height={m.height}")
+engine = pyttsx3.init()
+engine.say("""Hello Parth Joshi, hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           hello
+           """)
+engine.runAndWait()
